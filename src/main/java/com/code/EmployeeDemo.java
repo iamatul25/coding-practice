@@ -1,6 +1,7 @@
 package com.code;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class EmployeeDemo {
@@ -17,6 +18,12 @@ public class EmployeeDemo {
         employees.add(new Employee("Neha Gupta", "Bangalore", "HR", 55000, 25));
         employees.add(new Employee("Karan Malhotra", "Delhi", "Marketing", 72000, 29));
         employees.add(new Employee("Divya Nair", "Hyderabad", "IT", 88000, 31));
-        System.out.println(employees.get(0).getName());
+
+        List<Employee> sortedBySalary = new ArrayList<>(employees);
+        //sorting by ascending salary
+        sortedBySalary.sort(Comparator.comparing(Employee::getSalary));
+        System.out.println("Employees sorted by ascending salary");
+        sortedBySalary.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
+        System.out.println("-----------------------------");
     }
 }
