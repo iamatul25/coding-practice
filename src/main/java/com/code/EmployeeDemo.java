@@ -30,5 +30,10 @@ public class EmployeeDemo {
         sortedBySalary.sort(Comparator.comparing(Employee::getSalary).reversed());
         sortedBySalary.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
         System.out.println("-----------------------------");
+        //sorting by name
+        System.out.println("Employees sorted by name");
+        sortedBySalary.sort(Comparator.comparing(Employee::getName));
+        sortedBySalary.forEach(e->System.out.println(e.getName()));
+        System.out.println("-----------------------------");
     }
 }
