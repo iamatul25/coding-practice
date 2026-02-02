@@ -52,6 +52,11 @@ public class EmployeeDemo {
         employees.sort(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary, Comparator.reverseOrder()));
         employees.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
         System.out.println("-----------------------------");
+        System.out.println(" Sorted by City, Department, Name:");
+        employees.sort(Comparator.comparing(Employee::getCity).thenComparing(Employee::getDepartment).thenComparing(Employee::getName));
+        employees.forEach(e-> System.out.println(e.getCity()+"-"+e.getDepartment()+"-"+e.getName()));
+        System.out.println("-----------------------------");
+
 
     }
 }
