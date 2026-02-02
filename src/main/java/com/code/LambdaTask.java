@@ -3,6 +3,7 @@ package com.code;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class LambdaTask {
     public static void main(String[] args) throws Exception {
@@ -36,5 +37,17 @@ public class LambdaTask {
         names.sort(lengthComparator);
         System.out.println("Sorted by length: " + names);
         names.sort(Comparator.comparing(String::length));
+
+        System.out.println("\n=== Task 3: Callable ===");
+        // TODO: Convert this Callable to lambda
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return 42 * 2;
+            }
+        };
+        System.out.println("Callable result: " + callable.call());
+        Callable <Integer> c = ()-> 52 * 2;
+        System.out.println("Callable result: " + c.call());
     }
 }
