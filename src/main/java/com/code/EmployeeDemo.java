@@ -1,6 +1,7 @@
 package com.code;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,21 +20,38 @@ public class EmployeeDemo {
         employees.add(new Employee("Karan Malhotra", "Delhi", "Marketing", 72000, 29));
         employees.add(new Employee("Divya Nair", "Hyderabad", "IT", 88000, 31));
 
-        List<Employee> sortedBySalary = new ArrayList<>(employees);
+        Collections.sort(employees);
+        employees.forEach(e->System.out.println(e.getName()));
+        System.out.println("-----------------------------");
+
+        Collections.reverse(employees);
+        employees.forEach(e->System.out.println(e.getName()));
+        System.out.println("-----------------------------");
+
+
         //sorting by ascending salary
-        sortedBySalary.sort(Comparator.comparing(Employee::getSalary));
+        employees.sort(Comparator.comparing(Employee::getSalary));
         System.out.println("Employees sorted by ascending salary");
-        sortedBySalary.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
+        employees.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
         System.out.println("-----------------------------");
         //sorting by descending salary
         System.out.println("Employees sorted by descending salary");
-        sortedBySalary.sort(Comparator.comparing(Employee::getSalary).reversed());
-        sortedBySalary.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
+        employees.sort(Comparator.comparing(Employee::getSalary,Comparator.reverseOrder()));
+        employees.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
         System.out.println("-----------------------------");
         //sorting by name
         System.out.println("Employees sorted by name");
-        sortedBySalary.sort(Comparator.comparing(Employee::getName));
-        sortedBySalary.forEach(e->System.out.println(e.getName()));
+        employees.sort(Comparator.comparing(Employee::getName));
+        employees.forEach(e->System.out.println(e.getName()));
         System.out.println("-----------------------------");
+        System.out.println("Employees sorted by descending order of name and salary");
+        employees.sort(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary).reversed());
+        employees.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
+        System.out.println("-----------------------------");
+        System.out.println("Employees sorted by ascending name and descending salary");
+        employees.sort(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary, Comparator.reverseOrder()));
+        employees.forEach(e->System.out.println(e.getName()+"-"+e.getSalary()));
+        System.out.println("-----------------------------");
+
     }
 }
