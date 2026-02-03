@@ -49,5 +49,8 @@ public class LambdaTask {
         System.out.println("Callable result: " + callable.call());
         Callable <Integer> c = ()-> 52 * 2;
         System.out.println("Callable result: " + c.call());
+
+        MyInterface m = (a,b)-> a*b;
+        System.out.println(m.doSomething(3,4));
     }
 }
