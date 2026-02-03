@@ -52,5 +52,10 @@ public class LambdaTask {
 
         MyInterface m = (a,b)-> a*b;
         System.out.println(m.doSomething(3,4));
+
+//        StringProcessor sp = String::toUpperCase;
+        StringProcessor sp = (s)->s.toUpperCase();
+        System.out.println(sp.process("hello world"));
+
     }
 }
