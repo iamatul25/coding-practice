@@ -107,9 +107,8 @@ public class LambdaTask {
         for (Employee emp : filteredEmployees) {
             System.out.println(emp.getName() + " - " + emp.getSalary());
         }
-
         System.out.println("-----------------------------");
         employees.stream().filter(emp->emp.getSalary()>70000).sorted(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary)).
-                forEach(emp->System.out.println(emp.getName()+"-"+emp.getSalary()));
+                forEach(emp->System.out.println(emp.getName()+" salary is - "+emp.getSalary()));
     }
 }
