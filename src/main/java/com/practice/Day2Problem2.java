@@ -1,11 +1,14 @@
 package com.practice;
 
 import com.code.Employee;
+import com.practice.dto.EmployeeDTO;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Day2Problem2 {
     public static void main(String[] args) {
@@ -97,5 +100,22 @@ public class Day2Problem2 {
                                 e.getName() + " - Grade: " + getEmployeeGrade.apply(e)
                         )
                 );
+
+
+        // TODO: Task 7 - Create a Map of department to average salary
+        System.out.println("\nTask 7: Average Salary by Department");
+        Map<String, Double> avgSalaryByDept = employees.stream().collect(Collectors.groupingBy(
+                Employee::getDepartment, Collectors.averagingInt(Employee::getSalary)));
+
+        avgSalaryByDept.forEach((dept, avg) -> System.out.println(dept + ": ₹" + String.format("%.2f", avg)));
+
+        // TODO: BONUS - Create a function that converts Employee to a custom DTO
+        System.out.println("\nBONUS: Employee DTOs");
+        Function<Employee, EmployeeDTO> toDTO = e -> new EmployeeDTO(e.getName(),
+                createEmail.apply(e),
+                getEmployeeGrade.apply(e));
+
+        List<EmployeeDTO> dtos = employees.stream().map(toDTO).toList();dtos.forEach(System.out::println);
     }
+
 }
