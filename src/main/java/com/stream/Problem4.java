@@ -18,7 +18,7 @@ public class Problem4 {
 
         // TODO: Task 2 - Print name and salary of IT employees
         System.out.println("\n2. IT employees (name and salary):");
-        employees.forEach(e -> System.out.println(e.getName() + " salary is " + e.getSalary()));
+        employees.stream().filter(e->e.getDepartment().equalsIgnoreCase("IT")).forEach(e-> System.out.println(e.getName() + " salary is " + e.getSalary()));
 
 
         // TODO: Task 3 - Print employees with formatted output
