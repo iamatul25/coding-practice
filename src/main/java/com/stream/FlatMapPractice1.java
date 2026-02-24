@@ -30,6 +30,7 @@ public class FlatMapPractice1 {
 
         // TODO: Use flatMap to get a single list of all numbers
         // Expected output: [10, 20, 30, 40, 50, 60]
+        numbers.stream().flatMap(List::stream).forEach(System.out::println);
 
 
         // Problem 3: Print each fruit on a new line
