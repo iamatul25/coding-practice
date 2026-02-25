@@ -76,18 +76,28 @@ public class Problem5 {
 
         // TODO: Task 4 - Get all employees from all departments
         System.out.println("\n4. All employees from all departments:");
+        var empList = departments.stream().flatMap(department -> department.getEmployees().stream()).map(Employee::getName).toList();
+        System.out.println(empList);
 
 
         // TODO: Task 5 - Get names of all employees earning > 70000
         System.out.println("\n5. Names of employees earning > 70000:");
+        var empSal = departments.stream().flatMap(department -> department.getEmployees().stream()).filter(e -> e.getSalary() > 70000).
+                map(Employee::getName).toList();
+        System.out.println(empSal);
 
 
         // TODO: Task 6 - Get total count of all employees across departments
         System.out.println("\n6. Total employee count:");
+        var empCount = departments.stream().flatMap(department -> department.getEmployees().stream()).count();
+
 
 
         // TODO: Task 7 - Get all unique cities where employees work
         System.out.println("\n7. Unique cities:");
+        var uniqueCity = departments.stream().flatMap(department -> department.getEmployees().stream()).
+                map(Employee::getCity).distinct().sorted().toList();
+        System.out.println(uniqueCity);
 
 
         // TODO: Task 8 - Get average salary across all departments
