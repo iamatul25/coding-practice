@@ -4,6 +4,7 @@ import com.code.Employee;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Problem5 {
     public static void main(String[] args) {
@@ -102,7 +103,13 @@ public class Problem5 {
 
         // TODO: Task 8 - Get average salary across all departments
         System.out.println("\n8. Average salary (all departments):");
+        double avgSalary = departments.stream()
+                .flatMap(d -> d.getEmployees().stream())
+                .mapToInt(Employee::getSalary)
+                .average()
+                .orElse(0);
 
+        System.out.println(avgSalary);
 
         System.out.println("\n\n=== FLATMAP WITH ARRAYS ===");
 
@@ -114,6 +121,8 @@ public class Problem5 {
         };
         // Convert to single list
         System.out.println("\n9. Flatten array of arrays:");
+        var flattenArray = Arrays.stream(numberArrays).flatMap(Arrays::stream).toList();
+        System.out.println(flattenArray);
 
 
         // TODO: Task 10 - Get all skills from employees
@@ -138,10 +147,13 @@ public class Problem5 {
 
         // Get all unique skills
         System.out.println("\n10. All unique skills:");
+        var uniqueSkills = employeesWithSkills.stream().flatMap(e -> e.getSkills().stream()).distinct().toList();
+        System.out.println(uniqueSkills);
 
 
         // BONUS: Task 11 - Get employees who know "Java"
         System.out.println("\n11. BONUS - Employees who know Java:");
+        employeesWithSkills.stream().filter(e->e.getSkills().contains("Java")).map(EmployeeWithSkills::getName).sorted().toList();
 
     }
 }
