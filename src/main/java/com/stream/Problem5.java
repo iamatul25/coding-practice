@@ -153,7 +153,8 @@ public class Problem5 {
 
         // BONUS: Task 11 - Get employees who know "Java"
         System.out.println("\n11. BONUS - Employees who know Java:");
-        employeesWithSkills.stream().filter(e->e.getSkills().contains("Java")).map(EmployeeWithSkills::getName).sorted().toList();
+       List<String> javaExpert =  employeesWithSkills.stream().filter(e->e.getSkills().contains("Java")).map(EmployeeWithSkills::getName).sorted().toList();
+       System.out.println(javaExpert);
 
     }
 }
