@@ -2,9 +2,7 @@ package com.stream;
 
 import com.code.Employee;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MyProblem1 {
@@ -25,6 +23,18 @@ public class MyProblem1 {
 
         Map<String, List<String>> empByDept = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.mapping(Employee::getName, Collectors.toList())));
         empByDept.forEach((dept, empName)->System.out.println(empName+" works in "+dept));
+
+        //highest paid employee per department
+        Map<String, Optional<Employee>> highSalByDept = employees.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.maxBy(Comparator.comparingInt(Employee::getSalary))));
+        highSalByDept.forEach((dept, emp)-> System.out.println(dept+" dept highest salary is "+emp.map(Employee::getSalary).orElse(0)));
+
+        //Flatten a list of lists and find distinct sorted elements
+        List<List<Integer>> nested = List.of(List.of(3, 1, 4,7),
+                                            List.of(1, 5, 8, 8, 9),
+                                            List.of(2, 6, 5, 7, 6));
+        List<Integer> numList = nested.stream().flatMap(Collection::stream).distinct().sorted().toList();
+        numList.forEach(System.out::println);
+
 
     }
 }
