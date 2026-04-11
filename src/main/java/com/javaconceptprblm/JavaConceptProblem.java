@@ -2,6 +2,8 @@ package com.javaconceptprblm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class JavaConceptProblem {
 
@@ -25,6 +27,26 @@ public class JavaConceptProblem {
         employeeList.add(new Employee(255, "Ali Baig", 23, "Male", "Infrastructure", 2018, 12700.0));
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
+
+        System.out.println("total count of male and female employees");
+        Map<String, Long> genderCount = employeeList.stream().collect(Collectors.groupingBy((Employee::getGender), Collectors.counting()));
+        System.out.println(genderCount);
+        System.out.println("----------------");
+
+        System.out.println("List of departments");
+        employeeList.stream().distinct().map(Employee::getDepartment).forEach(System.out::println);
+        System.out.println("----------------");
+
+        System.out.println("Average of male and female employees");
+        Map<String, Double> avgAgeByGender = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
+        System.out.println(avgAgeByGender);
+        System.out.println("----------------");
+
+        
+
+
+
+
 
     }
 
