@@ -1,6 +1,7 @@
 package com.javaconceptprblm;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,6 +42,18 @@ public class JavaConceptProblem {
         Map<String, Double> avgAgeByGender = employeeList.stream().collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingInt(Employee::getAge)));
         System.out.println(avgAgeByGender);
         System.out.println("----------------");
+
+        System.out.println("\n=== Q4: Highest Paid Employee ===");
+        employeeList.stream().max(Comparator.comparingDouble(Employee::getSalary)).ifPresent(System.out::println);
+        System.out.println("----------------");
+
+        System.out.println("\n=== Q5: Joined After 2015 ===");
+        employeeList.stream().filter(e->e.getYearOfJoining()>2015).map(Employee::getName).forEach(System.out::println);
+        System.out.println("----------------");
+
+
+
+
 
         
 
